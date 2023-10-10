@@ -7,9 +7,12 @@ import ExerciseCard from './ExerciseCard'
 const Exercises = ({exercises, setExercises, bodyPart}) => {
   const [currentPage, setCurrentPage] = useState(1)
 
-  const indexOfLastPage = currentPage * 3;
-  const indexOfFirstPage = indexOfLastPage - 3;
-  const currentExercises = exercises.slice(indexOfFirstPage, indexOfLastPage);
+ // Pagination
+ const exercisesPerPage = 3;
+  const indexOfLastExercise = currentPage * exercisesPerPage;
+  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+  const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
+
 
    const handlePaginate = (event, newPage) => {
     setCurrentPage(newPage)
@@ -17,7 +20,6 @@ const Exercises = ({exercises, setExercises, bodyPart}) => {
   }
 
   useEffect(() => {
-    console.log(`Body part is ${bodyPart}`);
     const fetchExercisesData = async () => {
       let exercisesData = [];
 
